@@ -55,8 +55,13 @@ namespace BinarySerachTree
             public Node<T> GetRoot()
             {
                 return this.Root;
-            }
-            public void Display(Node<T> node)
+        }
+        public int GetSize()
+        {
+            return count;
+        }
+
+        public void Display(Node<T> node)
             {
                 if (node != null)
                 {
