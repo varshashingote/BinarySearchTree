@@ -6,93 +6,66 @@ using System.Threading.Tasks;
 
 namespace BinarySerachTree
 {
-        public class BinarySearchTree<T> where T : IComparable
+
+
+    public class BinarySearchTree<T> where T : IComparable<T>
+    {
+        public T NodeData { get; set; }
+        public BinarySearchTree<T> LeftTree { get; set; }
+        public BinarySearchTree<T> RightTree { get; set; }
+        public BinarySearchTree(T nodeData)
         {
-            //UC1
-            //create a BST
-            int count = 0;
-            bool result = false;
-            Node<T> Root;
-            Node<T> Current;
-            public void InsertData(T data)
+            this.NodeData = nodeData;
+            this.LeftTree = null;
+            this.RightTree = null;
+        }
+        public int leftCount = 0, rightCount = 0;
+        public bool result = false;
+        public void Insert(T item)
+        {
+            T currentNodeValue = this.NodeData;
+            if ((currentNodeValue.CompareTo(item)) > 0)
             {
-                if (Root == null)
+                if (this.LeftTree == null)
                 {
-                    this.Root = new Node<T>(data);
-                    this.Current = Root;
-                    count++;
-                    return;
-                }
-                if (this.Current.data.CompareTo(data) > 0)
-                {
-                    if (this.Current.leftNode == null)
-                    {
-                        this.Current.leftNode = new Node<T>(data);
-                        this.Current = Root;
-                        count++;
-                    }
-                    else
-                    {
-                        this.Current = this.Current.leftNode;
-                        InsertData(data);
-                    }
+                    this.leftCount++;
+                    this.LeftTree = new BinarySearchTree<T>(item);
                 }
                 else
                 {
-                    if (this.Current.rightNode == null)
-                    {
-                        this.Current.rightNode = new Node<T>(data);
-                        this.Current = Root;
-                        count++;
-                    }
-                    else
-                    {
-                        this.Current = this.Current.rightNode;
-                        InsertData(data);
-                    }
+                    this.LeftTree.Insert(item);
                 }
-            }
-            public Node<T> GetRoot()
-            {
-                return this.Root;
-        }
-        public int GetSize()
-        {
-            return count;
-        }
-        public bool SearchTree(int data, Node<T> node)
-        {
-            if (node == null)
-            {
-                return false;
             }
             else
             {
-                if (this.Current.data.Equals(data))
+                if (this.RightTree == null)
                 {
-                    result = true;
+                    this.rightCount++;
+                    this.RightTree = new BinarySearchTree<T>(item);
                 }
-                else if (this.Current.data.CompareTo(data) > 0)
+                else
                 {
-                    this.Current = this.Current.leftNode;
-                    SearchTree(data, Current);
+                    this.RightTree.Insert(item);
                 }
-                return result;
             }
         }
-
-
-        public void Display(Node<T> node)
+            public void Display()
             {
-                if (node != null)
+                if (this.LeftTree != null)
                 {
-                    Display(node.leftNode);
-                    Console.WriteLine("Element in binary serach tree is: " + node.data);
-                    Display(node.rightNode);
+                    this.LeftTree.Display();
+                }
+                Console.WriteLine(this.NodeData.ToString());
+                if (this.RightTree != null)
+                {
+                    this.RightTree.Display();
                 }
             }
+
         }
     }
+
+
 
 
 
