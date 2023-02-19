@@ -49,7 +49,12 @@ namespace BinarySerachTree
                 }
             }
         }
-            public void Display()
+        public void GetSize()
+        {
+            Console.WriteLine("Number of element in BST " + " " + (1 + this.leftCount + this.rightCount));
+        }
+
+        public void Display()
             {
                 if (this.LeftTree != null)
                 {

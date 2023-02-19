@@ -20,8 +20,8 @@ namespace BinarySerachTree
                 Console.WriteLine("Please select given options");
                 Console.WriteLine("1.Insert value in BST\n" +
                     "2.Display\n" +
-                    "3.Get size of BST\n" +
-                    "4.Search element of BST\n" +
+                    "3.GetSize" +
+
                     "6.Exit\n");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -37,16 +37,11 @@ namespace BinarySerachTree
                         tree.Display();
                         Console.Write("\nPress any key to continue...... ");
                         break;
-                    //case 3:
-                    //    tree.GetSize();
-                    //    Console.Write("\nPress any key to continue...... ");
-                    //    break;
-                    //case 4:
-                    //    Console.Write("Enter the element which you want to search: ");
-                    //    int element = Convert.ToInt32(Console.ReadLine());
-                    //    tree.IfExits(element, tree);
-                    //    Console.Write("\nPress any key to continue...... ");
-                    //    break;
+                    case 3:
+                        tree.GetSize();
+                        Console.Write("\nPress any key to continue...... ");
+                        break;
+
                     case 6:
                         Console.Clear();
                         break;
@@ -57,7 +52,7 @@ namespace BinarySerachTree
                 }
                 Console.ReadLine();
             
-        }
+            }
        
         }
     }
